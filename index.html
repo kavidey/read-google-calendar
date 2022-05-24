@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Google Calendar API Quickstart</title>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <span id="content"></span>
+    <script>
+        const API_KEY = "AIzaSyC2U01LNV17BDTVYoj3iH_SKQhEo8fuw6o"
+        const url = `https://www.googleapis.com/calendar/v3/calendars/7ejkjt68q2413i421j6f89fe7s@group.calendar.google.com/events?key=${API_KEY}`
+        fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            document.getElementById("content").innerHTML = data.items.map(item => item.summary);
+            console.log(data);
+        }).catch(function () {
+            console.log("Booo");
+        });
+    </script>
+</body>
+
+</html>
