@@ -9,8 +9,15 @@
 <body>
     <span id="content"></span>
     <script>
-        const API_KEY = "AIzaSyC2U01LNV17BDTVYoj3iH_SKQhEo8fuw6o"
-        const url = `https://www.googleapis.com/calendar/v3/calendars/7ejkjt68q2413i421j6f89fe7s@group.calendar.google.com/events?key=${API_KEY}`
+        const API_KEY = "AIzaSyC2U01LNV17BDTVYoj3iH_SKQhEo8fuw6o";
+        const CALENDAR_ID = "brooklynprospect.org_ho0c1jltlcsv83vmp9nlaea5fc@group.calendar.google.com";
+
+        const beginningOfDay = new Date();
+
+        const endOfDay = new Date();
+        endOfDay.setUTCHours(23, 59, 59, 999);
+
+        const url = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}&timeMin=${beginningOfDay.toISOString()}&timeMax=${endOfDay.toISOString()}`;
         fetch(url).then(function (response) {
             return response.json();
         }).then(function (data) {
